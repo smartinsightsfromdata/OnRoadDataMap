@@ -141,6 +141,8 @@ shinyServer(function(input, output, session) {
       if(is.numeric(PlotData[,PlotField2])) {
         Size <- (PlotData[,PlotField2] - input$range2[1])/diff(input$range2)*diff(sizeRange) + sizeRange[1]
         Size[is.na(Size)] <- 6        
+        Size[Size<sizeRange[1]] <- sizeRange[1]
+        Size[Size>sizeRange[2]] <- sizeRange[2]           
       } else Size <- rep(6,nrow(PlotData))
     } else {    
       Size <- rep(6,nrow(PlotData))
