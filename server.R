@@ -99,7 +99,7 @@ shinyServer(function(input, output, session) {
         pointToLayer =  "#! function(feature, latlng){
           return L.circleMarker(latlng, {
                radius: feature.properties.radius || 6,
-               fillColor: feature.properties.fillColor || 'red',    
+               fillColor: feature.properties.fillColor || '#000',    
                color: '#000',
                weight: 1.2,
                fillOpacity: 0.7 
@@ -141,7 +141,6 @@ shinyServer(function(input, output, session) {
     if(!is.null(PlotField2) & all(is.numeric(input$range2))) {     
       if(is.numeric(PlotData[,PlotField2])) {
         Size <- (PlotData[,PlotField2] - input$range2[1])/diff(input$range2)*diff(sizeRange) + sizeRange[1]
-        Size[is.na(Size)] <- 6
       } else Size <- rep(6,nrow(PlotData))
     } else {    
       Size <- rep(6,nrow(PlotData))
