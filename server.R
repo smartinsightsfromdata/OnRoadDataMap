@@ -130,7 +130,6 @@ shinyServer(function(input, output, session) {
     if(!is.null(PlotField1) & all(is.numeric(input$range1))) {     
       if(is.numeric(PlotData[,PlotField1])) {
         Cat <- cut(PlotData[,PlotField1], breaks=input$range1[1] + diff(input$range1)/5 * 0:5)
-        Cat[is.na(Cat)] <- 6
       } else Cat <- rep(6,nrow(PlotData))
     } else {    
        Cat <- rep(6,nrow(PlotData))
@@ -141,6 +140,7 @@ shinyServer(function(input, output, session) {
     if(!is.null(PlotField2) & all(is.numeric(input$range2))) {     
       if(is.numeric(PlotData[,PlotField2])) {
         Size <- (PlotData[,PlotField2] - input$range2[1])/diff(input$range2)*diff(sizeRange) + sizeRange[1]
+        Size[is.na(Size)] <- 6        
       } else Size <- rep(6,nrow(PlotData))
     } else {    
       Size <- rep(6,nrow(PlotData))
